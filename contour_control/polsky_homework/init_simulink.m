@@ -24,6 +24,15 @@ T_e = 0.0068 ;
 T_pow = 0.0004 ;
 T_m = (J*R)/(km*kw);
 
+w_max = 0.8;
+a_max = 1 ;
+t_accel = 0.8 ;
+t_braking = 0.8 ;
+t_const_rate = 1 ;
+
+%расчет трапеции скорсти 
+
+
 %% _______________________контур тока_________________________ %%
 
 % ПИ - регулятор тока
@@ -34,12 +43,12 @@ kp_curr = ki_curr * T_e ;  % тк T_рт = kp_curr/ki_curr = T_e
 %% _______________________контур скорости_____________________ %%
 
 % ПИ - регулятор скорости
-r = k_curr * ki_curr * k_pow * T_m / R; % !!!!!!!!!!!!!!!!!!!
-tau_rate = 4 * T_m / (1 + r);
-%v_coeff = (1 + r)^3 / (8*T_m*T_m) ;
-v_coeff = (1 + r)^2 / (2*T_m) ;
-ki_rate = v_coeff*kw / (k_spd * ki_curr *k_pow);
-kp_rate = ki_rate * tau_rate ;
+% r = k_curr * ki_curr * k_pow * T_m / R; % !!!!!!!!!!!!!!!!!!!
+% tau_rate = 4 * T_m / (1 + r);
+% %v_coeff = (1 + r)^3 / (8*T_m*T_m) ;
+% v_coeff = (1 + r)^2 / (2*T_m) ;
+% ki_rate = v_coeff*kw / (k_spd * ki_curr *k_pow);
+% kp_rate = ki_rate * tau_rate ;
 
 
 %% _______________________Подсос данных в модели_________________________%%
