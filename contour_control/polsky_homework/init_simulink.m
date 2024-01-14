@@ -28,15 +28,18 @@ T_m = (J*R)/(km*kw);
 
 % ПИ - регулятор тока
 r_coeff = 1 / (2*T_pow) ;
-kp_curr = r_coeff*R / (k_curr * k_pow);
-ki_curr = 1/T_e ;  %124
+ki_curr = (r_coeff * R) / (k_curr * k_pow); % !!!!!!!!!!!!!!!!!!!
+kp_curr = ki_curr * T_e ;  % тк T_рт = kp_curr/ki_curr = T_e
 
 %% _______________________контур скорости_____________________ %%
 
 % ПИ - регулятор скорости
-v_coeff = 1 / (2*T_pow) ;
-kp_rate = r_coeff*R / (k_curr * k_pow);
-ki_rate = 1/T_e ;
+r = k_curr * ki_curr * k_pow * T_m / R; % !!!!!!!!!!!!!!!!!!!
+tau_rate = 4 * T_m / (1 + r);
+%v_coeff = (1 + r)^3 / (8*T_m*T_m) ;
+v_coeff = (1 + r)^2 / (2*T_m) ;
+ki_rate = v_coeff*kw / (k_spd * ki_curr *k_pow);
+kp_rate = ki_rate * tau_rate ;
 
 
 %% _______________________Подсос данных в модели_________________________%%
