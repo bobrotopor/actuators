@@ -17,7 +17,12 @@ k_pow = 10 ; %10
 k_curr = 1 ;
 k_spd = 1 ;
 
-J = 3.29e-3 ;
+J_debug = 0 ;
+
+J = 3.29e-3  + J_debug;
+Jmin = 2.73e-3 + J_debug ;
+Jmax = 3.85e-3 + J_debug;
+
 i = 262 ; %262 ;
 
 T_e = 0.0068 ;
